@@ -146,6 +146,18 @@ If you use pip, activate the project's `.venv` first, then check with `which lan
 
 `.env` is missing, or a key in it is empty or wrong. Copy `.env.example` to `.env`, fill it in, and restart `langgraph dev`.
 
+**`OpenAIAuthenticationError: Error code: 401 - {'error': 'Unauthorized'}` even though your key is valid**
+
+A bare `Unauthorized` (instead of OpenAI's usual `Incorrect API key provided`) means the request didn't reach OpenAI. Your environment probably sets `OPENAI_BASE_URL` to a proxy or gateway. Check with `echo $OPENAI_BASE_URL`. To send this project's calls directly to OpenAI, add this line to `.env` and restart the server. Values in `.env` take precedence over your shell environment.
+
+```bash
+OPENAI_BASE_URL=https://api.openai.com/v1
+```
+
+**`Port 2024 is already in use`**
+
+Another LangGraph server is running. Stop it, or pick a different port with `uv run langgraph dev --port 8123`, and use that port in the Studio URL and SDK examples.
+
 ### How storage works
 
 The agent's virtual filesystem routes paths to different backends:

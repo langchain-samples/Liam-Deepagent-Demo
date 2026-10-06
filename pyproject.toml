@@ -5,12 +5,12 @@ description = "A research Deep Agent with web search, long-term memory, and skil
 requires-python = ">=3.11"
 readme = "README.md"
 dependencies = [
-    "deepagents==0.7.0",
+    "deepagents==0.7.22",
     "langchain==1.4.3",
     "langchain-core==1.6.6",
     "langchain-openai==1.6.7",
-    "langgraph==1.2.12",
-    "langsmith==0.14.2",
+    "langgraph==1.2.13",
+    "langsmith==0.14.4",
     "tavily-python==0.8.4",
 ]
 

@@ -1,0 +1,23 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+credentials.json
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+
+# LangGraph dev server local state
+.langgraph_api/
+
+# Editor / OS
+.cursor/
+.vscode/
+.idea/
+.DS_Store

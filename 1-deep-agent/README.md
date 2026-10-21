@@ -50,8 +50,8 @@ You can run it locally in LangGraph Studio with one command, and deploy it from 
 **1. Clone and install**
 
 ```bash
-git clone https://github.com/langchain-samples/Liam-Deepagent-Demo.git
-cd Liam-Deepagent-Demo/1-deep-agent
+git clone https://github.com/langchain-samples/deepagent-and-mda-workshop.git
+cd deepagent-and-mda-workshop/1-deep-agent
 uv sync
 ```
 

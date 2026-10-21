@@ -58,8 +58,8 @@ Every file maps to one MDA feature. Open any of them: most are under 10 lines.
 ## Step 1: Install and add your keys
 
 ```bash
-git clone https://github.com/langchain-samples/Liam-Deepagent-Demo.git
-cd Liam-Deepagent-Demo/2-managed-deep-agent
+git clone https://github.com/langchain-samples/deepagent-and-mda-workshop.git
+cd deepagent-and-mda-workshop/2-managed-deep-agent
 uv sync
 cp .env.example .env      # then open .env and paste your three keys
 ```

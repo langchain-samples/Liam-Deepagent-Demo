@@ -19,8 +19,8 @@ Each folder is a separate project with its own `README.md`, `pyproject.toml`, an
 **Quick start (Part 2):**
 
 ```bash
-git clone https://github.com/langchain-samples/Liam-Deepagent-Demo.git
-cd Liam-Deepagent-Demo/2-managed-deep-agent
+git clone https://github.com/langchain-samples/deepagent-and-mda-workshop.git
+cd deepagent-and-mda-workshop/2-managed-deep-agent
 uv sync
 cp .env.example .env      # add your LangSmith, OpenAI, and Tavily keys
 uv run mda dev            # try it locally in LangSmith Studio

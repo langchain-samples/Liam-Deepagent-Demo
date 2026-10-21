@@ -23,11 +23,10 @@ You can run it locally in LangGraph Studio with one command, and deploy it from 
 ```
 1-deep-agent/
 ├── agent.py                  # Agent definition (model, tools, memory, skills)
-├── agent_config/
-│   ├── AGENTS.md             # Agent identity, workflow, and rules (always loaded)
-│   └── skills/
-│       ├── linkedin-post/SKILL.md
-│       └── twitter-post/SKILL.md
+├── AGENTS.md                 # Agent identity, workflow, and rules (always loaded)
+├── skills/
+│   ├── linkedin-post/SKILL.md
+│   └── twitter-post/SKILL.md
 ├── langgraph.json            # LangGraph server / deployment config
 ├── pyproject.toml            # Dependencies (pinned)
 └── .env.example              # Template for required API keys
@@ -124,13 +123,25 @@ If you enable automatic updates, each push to the selected branch triggers a new
 
 | To change… | Edit |
 |---|---|
-| The agent's workflow, rules, or persona | `agent_config/AGENTS.md` |
-| Add a new skill | Create `agent_config/skills/<skill-name>/SKILL.md` with `name` and `description` frontmatter (see the existing skills) |
+| The agent's workflow, rules, or persona | `AGENTS.md` |
+| Add a new skill | Create `skills/<skill-name>/SKILL.md` with `name` and `description` frontmatter (see the existing skills) |
 | The model | `model = ChatOpenAI(model="gpt-5")` in `agent.py`; any LangChain chat model works, e.g. `ChatAnthropic` or `ChatBedrockConverse` |
 | Tools | Add a `@tool` function in `agent.py` and include it in `tools=[...]` |
 | Search depth | `max_results` in `tavily_search`, and the "Use 2-3 searches maximum" rule in `AGENTS.md` |
 
 `langgraph dev` reloads automatically as you edit files.
+
+## How storage works
+
+The agent's virtual filesystem routes paths to different backends:
+
+| Path | Backend | Lifetime |
+|---|---|---|
+| `/memories/` | LangGraph store | Persists across all conversations |
+| `/skills/` | Files in `skills/` | Read-only; versioned in git |
+| Everything else (e.g. `/final_report.md`) | Thread state | Scoped to a single conversation |
+
+Locally, `langgraph dev` keeps the store and conversation history in memory and saves them to `.langgraph_api/`. In a LangSmith deployment they are backed by managed Postgres.
 
 ## Troubleshooting
 
@@ -159,18 +170,6 @@ OPENAI_BASE_URL=https://api.openai.com/v1
 **`Port 2024 is already in use`**
 
 Another LangGraph server is running. Stop it, or pick a different port with `uv run langgraph dev --port 8123`, and use that port in the Studio URL and SDK examples.
-
-### How storage works
-
-The agent's virtual filesystem routes paths to different backends:
-
-| Path | Backend | Lifetime |
-|---|---|---|
-| `/memories/` | LangGraph store | Persists across all conversations |
-| `/config/` | Files in `agent_config/` | Read-only; versioned in git |
-| Everything else (e.g. `/final_report.md`) | Thread state | Scoped to a single conversation |
-
-Locally, `langgraph dev` keeps the store and conversation history in memory and saves them to `.langgraph_api/`. In a LangSmith deployment they are backed by managed Postgres.
 
 ## Learn more
 

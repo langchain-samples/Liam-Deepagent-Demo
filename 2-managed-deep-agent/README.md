@@ -11,7 +11,7 @@ Every file maps to one MDA feature. Open any of them: most are under 10 lines.
 ```
 2-managed-deep-agent/
 ├── agent.py              # the agent: model, tools, middleware, subagent      (required)
-├── instructions.md       # system prompt (was agent_config/AGENTS.md)
+├── instructions.md       # system prompt (was AGENTS.md)
 ├── skills/               # LinkedIn + Twitter skills, loaded only when needed
 ├── tools/
 │   ├── search.py         # Tavily web search (same code as Part 1)
@@ -33,11 +33,11 @@ Every file maps to one MDA feature. Open any of them: most are under 10 lines.
 | Part 1 (`1-deep-agent/agent.py`) | Part 2 (this folder) |
 |---|---|
 | `create_deep_agent(...)` builds and compiles the agent | `define_deep_agent(...)` only *declares* it; LangSmith compiles and runs it |
-| `system_prompt=` + `memory=["/config/AGENTS.md"]` | `instructions.md` |
-| `skills=["/config/skills/"]` | `skills/` |
+| `system_prompt=` loaded from `AGENTS.md` | `instructions.md` |
+| `skills=["/skills/"]` + a `FilesystemBackend` mount | `skills/` (no backend needed) |
 | `StoreBackend` at `/memories/` | `memory.py` (`/memories/agent/` and `/memories/user/`) |
 | `StateBackend` scratch files | `sandbox/`: a real filesystem with a shell |
-| `FilesystemPermission` deny on `/config/**` | Not needed: instructions and skills are read-only to the agent |
+| `FilesystemPermission` deny on `/skills/**` | Not needed: instructions and skills are read-only to the agent |
 | `langgraph.json` + deploy from GitHub | `uv run mda deploy` |
 | Not available | Slack (`channels/`), cron jobs (`schedules/`), MCP tools (`tools/mcp.py`), caller auth (`identity.py`) |
 

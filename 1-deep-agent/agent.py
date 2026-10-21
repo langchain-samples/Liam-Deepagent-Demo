@@ -16,8 +16,8 @@ from tavily import TavilyClient
 
 logger = logging.getLogger(__name__)
 
-# AGENTS.md and skills live on disk next to this file and are mounted at /config/.
-CONFIG_DIR = Path(__file__).parent / "agent_config"
+# AGENTS.md and skills/ live on disk next to this file.
+BASE_DIR = Path(__file__).parent
 
 model = ChatOpenAI(model="gpt-5")
 
@@ -72,19 +72,19 @@ backend = CompositeBackend(
     routes={
         # Persists across threads via the platform-provided store
         "/memories/": StoreBackend(namespace=lambda _rt: ("memories",)),
-        # Read-only agent identity + skills, loaded from the repo
-        "/config/": FilesystemBackend(root_dir=CONFIG_DIR, virtual_mode=True),
+        # Read-only skills, loaded from the repo. Only skills/ is mounted, so the
+        # agent can't read anything else in this folder (like .env).
+        "/skills/": FilesystemBackend(root_dir=BASE_DIR / "skills", virtual_mode=True),
     },
 )
 
 agent = create_deep_agent(
     model=model,
     tools=[tavily_search],
-    system_prompt="You are an expert research assistant.",
+    system_prompt=(BASE_DIR / "AGENTS.md").read_text(),  # Identity + workflow
     middleware=[LogToolCalls()],
-    skills=["/config/skills/"],  # LinkedIn + Twitter skills loaded on demand
-    memory=["/config/AGENTS.md"],  # Identity + workflow from AGENTS.md
+    skills=["/skills/"],  # LinkedIn + Twitter skills loaded on demand
     backend=backend,
-    # In production the agent must not rewrite its own instructions or the repo files.
-    permissions=[FilesystemPermission(operations=["write"], paths=["/config/**"], mode="deny")],
+    # In production the agent must not rewrite its own skills.
+    permissions=[FilesystemPermission(operations=["write"], paths=["/skills/**"], mode="deny")],
 )

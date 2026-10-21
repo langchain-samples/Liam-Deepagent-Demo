@@ -9,7 +9,7 @@ from pathlib import Path
 
 from deepagents import FilesystemPermission, create_deep_agent
 from deepagents.backends import CompositeBackend, FilesystemBackend, StateBackend, StoreBackend
-from langchain.agents.middleware import AgentMiddleware
+from langchain.agents.middleware import AgentMiddleware, TodoListMiddleware
 from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI
 from tavily import TavilyClient
@@ -82,7 +82,7 @@ agent = create_deep_agent(
     model=model,
     tools=[tavily_search],
     system_prompt=(BASE_DIR / "AGENTS.md").read_text(),  # Identity + workflow
-    middleware=[LogToolCalls()],
+    middleware=[LogToolCalls(), TodoListMiddleware()],  # TodoListMiddleware adds write_todos (opt-in since deepagents 0.7)
     skills=["/skills/"],  # LinkedIn + Twitter skills loaded on demand
     backend=backend,
     # In production the agent must not rewrite its own skills.

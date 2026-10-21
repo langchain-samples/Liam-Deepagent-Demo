@@ -8,6 +8,8 @@ In Part 1 you wrote the agent **and** the plumbing around it: backend, store, pe
 
 Every file maps to one MDA feature. Open any of them: most are under 10 lines.
 
+> **New to MDA?** [docs/MDA_FEATURE_GUIDE.md](docs/MDA_FEATURE_GUIDE.md) tours every feature, including the ones this project doesn't use yet. [docs/MDA_VS_DEEP_AGENTS.md](docs/MDA_VS_DEEP_AGENTS.md) explains what MDA gives you that plain Deep Agents doesn't.
+
 ```
 2-managed-deep-agent/
 ├── agent.py              # the agent: model, tools, middleware, subagent      (required)
@@ -22,10 +24,13 @@ Every file maps to one MDA feature. Open any of them: most are under 10 lines.
 │   ├── __init__.py       # an isolated filesystem + shell for each conversation
 │   └── setup.sh          # customizes the sandbox image (installs pandoc, pandas, …)
 ├── identity.py           # who can call the deployment (LangSmith API key)
-├── channels/slack.py     # talk to the agent in Slack
+├── channels/             # talk to the agent in Slack (slack.py + bot icon)
 ├── schedules/            # cron job: a weekly research digest every Monday
 ├── pyproject.toml        # dependencies
-└── .env.example          # API keys template
+├── .env.example          # API keys template
+└── docs/
+    ├── MDA_FEATURE_GUIDE.md   # every MDA feature, explained
+    └── MDA_VS_DEEP_AGENTS.md  # what MDA adds on top of Deep Agents
 ```
 
 ### How Part 1 maps to Part 2

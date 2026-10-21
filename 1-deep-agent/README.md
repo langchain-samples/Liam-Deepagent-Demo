@@ -2,6 +2,8 @@
 
 > Part 1 of the workshop. You run this agent yourself. [Part 2](../2-managed-deep-agent/) is the same agent as a Managed Deep Agent.
 
+> **New to Deep Agents?** [docs/DEEP_AGENTS_FEATURE_GUIDE.md](docs/DEEP_AGENTS_FEATURE_GUIDE.md) tours every feature of the `deepagents` package, including the ones this project doesn't use.
+
 A production-ready research agent built with [Deep Agents](https://docs.langchain.com/oss/python/deepagents/) on top of [LangGraph](https://docs.langchain.com/oss/python/langgraph/). Give it a topic and it plans the work, searches the web, writes a cited report, and can turn its findings into LinkedIn posts or Twitter/X threads.
 
 You can run it locally in LangGraph Studio with one command, and deploy it from GitHub with LangSmith Deployments.
@@ -29,7 +31,9 @@ You can run it locally in LangGraph Studio with one command, and deploy it from 
 │   └── twitter-post/SKILL.md
 ├── langgraph.json            # LangGraph server / deployment config
 ├── pyproject.toml            # Dependencies (pinned)
-└── .env.example              # Template for required API keys
+├── .env.example              # Template for required API keys
+└── docs/
+    └── DEEP_AGENTS_FEATURE_GUIDE.md   # every Deep Agents feature, explained
 ```
 
 ## Prerequisites

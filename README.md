@@ -14,6 +14,7 @@ Each folder is a separate project with its own `README.md`, `pyproject.toml`, an
 1. **Read the code**: open [`1-deep-agent/agent.py`](1-deep-agent/agent.py) to see how a Deep Agent is assembled.
 2. **Compare**: open [`2-managed-deep-agent/agent.py`](2-managed-deep-agent/agent.py). The same agent is about 20 lines, and each extra feature is its own file. The [mapping table](2-managed-deep-agent/README.md#how-part-1-maps-to-part-2) shows where each piece went.
 3. **Deploy it yourself**: follow [`2-managed-deep-agent/README.md`](2-managed-deep-agent/README.md) to run it locally, deploy it to LangSmith, and chat with it in Slack.
+4. **Explore the docs folders**: each part has a `docs/` folder. [`DEEP_AGENTS_FEATURE_GUIDE.md`](1-deep-agent/docs/DEEP_AGENTS_FEATURE_GUIDE.md) covers every Deep Agents feature, [`MDA_FEATURE_GUIDE.md`](2-managed-deep-agent/docs/MDA_FEATURE_GUIDE.md) covers every Managed Deep Agents feature, and [`MDA_VS_DEEP_AGENTS.md`](2-managed-deep-agent/docs/MDA_VS_DEEP_AGENTS.md) explains what MDA adds.
 
 **Quick start (Part 2):**
 

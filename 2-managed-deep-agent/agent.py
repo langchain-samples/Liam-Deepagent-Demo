@@ -1,3 +1,4 @@
+from langchain.agents.middleware import TodoListMiddleware
 from managed_deepagents import define_deep_agent
 
 from middleware.audit import log_tool_calls
@@ -18,6 +19,6 @@ agent = define_deep_agent(
     name="research-agent",
     model="openai:gpt-6-luna",
     tools=[tavily_search],
-    middleware=[log_tool_calls],
+    middleware=[log_tool_calls, TodoListMiddleware()],  # TodoListMiddleware adds write_todos
     subagents=[fact_checker],
 )

@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 # AGENTS.md and skills/ live on disk next to this file.
 BASE_DIR = Path(__file__).parent
 
-model = ChatOpenAI(model="gpt-5")
+model = ChatOpenAI(model="gpt-6-luna")
 
 tavily_client = TavilyClient()
 

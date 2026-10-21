@@ -125,7 +125,7 @@ If you enable automatic updates, each push to the selected branch triggers a new
 |---|---|
 | The agent's workflow, rules, or persona | `AGENTS.md` |
 | Add a new skill | Create `skills/<skill-name>/SKILL.md` with `name` and `description` frontmatter (see the existing skills) |
-| The model | `model = ChatOpenAI(model="gpt-5")` in `agent.py`; any LangChain chat model works, e.g. `ChatAnthropic` or `ChatBedrockConverse` |
+| The model | `model = ChatOpenAI(model="gpt-6-luna")` in `agent.py`; any LangChain chat model works, e.g. `ChatAnthropic` or `ChatBedrockConverse` |
 | Tools | Add a `@tool` function in `agent.py` and include it in `tools=[...]` |
 | Search depth | `max_results` in `tavily_search`, and the "Use 2-3 searches maximum" rule in `AGENTS.md` |
 

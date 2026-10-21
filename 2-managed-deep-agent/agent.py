@@ -16,7 +16,7 @@ fact_checker = {
 
 agent = define_deep_agent(
     name="research-agent",
-    model="openai:gpt-5",
+    model="openai:gpt-6-luna",
     tools=[tavily_search],
     middleware=[log_tool_calls],
     subagents=[fact_checker],

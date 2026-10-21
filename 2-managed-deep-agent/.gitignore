@@ -1,0 +1,15 @@
+# Secrets: never commit real API keys.
+.env
+.env.*
+!.env.example
+
+# Managed Deep Agent build output and local Context Hub / memory.
+.mda/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# OS / editor
+.DS_Store

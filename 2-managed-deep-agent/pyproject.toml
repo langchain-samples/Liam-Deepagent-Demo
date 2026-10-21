@@ -1,0 +1,12 @@
+[project]
+name = "mda-research-agent"
+version = "0.1.0"
+description = "The Deep Research Agent, packaged as a LangSmith Managed Deep Agent"
+requires-python = ">=3.11"
+dependencies = [
+    "managed-deepagents==0.9.4",
+    "tavily-python==0.8.4",
+]
+
+[tool.mda]
+python-version = "3.12"
